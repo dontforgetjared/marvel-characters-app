@@ -10,8 +10,14 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
+    'plugin:storybook/recommended',
   ],
-  overrides: [{ files: ['vite.config.ts'] }],
+  overrides: [
+    {
+      files: ['vite.config.ts'],
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -22,10 +28,19 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'react/prop-types': 0,
+    'react/require-default-props': 0,
     'prettier/prettier': [
       'error',
       {
         endOfLine: 'auto',
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.stories.*', '**/.storybook/**/*.*'],
+        peerDependencies: true,
       },
     ],
   },
