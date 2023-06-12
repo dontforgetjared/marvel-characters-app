@@ -25,6 +25,7 @@
     "**/*.config.js" ,
     "**/*.config.cjs" ,
     "**/*.config.ts" ,
+    "tests/*",
     "src"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]

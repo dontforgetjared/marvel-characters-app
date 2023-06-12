@@ -12,7 +12,7 @@ type NavItemT = {
 interface INavbarProps {
   includeSearch?: boolean;
   logoComponent?: ReactNode;
-  navItems: NavItemT[];
+  navItems?: NavItemT[];
   onChangeHandler?: () => void;
 }
 
@@ -20,7 +20,7 @@ function joinClasses(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = true }: INavbarProps) {
+function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = false }: INavbarProps) {
   return (
     <Disclosure as="header" className="bg-white dark:bg-zinc-800 shadow">
       {({ open }) => (
@@ -30,7 +30,7 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = true
               <div className="flex px-2 lg:px-0">
                 {!!logoComponent && <div className="flex flex-shrink-0 items-center">{logoComponent}</div>}
 
-                {navItems && (
+                {!!navItems && (
                   <nav className="hidden lg:ml-6 lg:flex lg:space-x-8" aria-label="Main Navigation">
                     {navItems.map((navItem) => (
                       <a
@@ -67,6 +67,7 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = true
                           type="search"
                           tabIndex={0}
                           onChange={onChangeHandler}
+                          data-testid="search"
                         />
                       </div>
                     </label>
@@ -74,19 +75,24 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = true
                 </div>
               )}
               <div className="flex items-center lg:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-zinc-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-inset dark:focus:ring-white">
+                <Disclosure.Button
+                  className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-zinc-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-inset dark:focus:ring-white"
+                  role="button"
+                >
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon
                       className="block h-6 w-6"
                       aria-expanded="true"
                       aria-label="Mobile Navigation Close Button"
+                      data-testid="closeicon"
                     />
                   ) : (
                     <Bars3Icon
                       className="block h-6 w-6"
                       aria-expanded="false"
                       aria-label="Mobile Navigation Open Button"
+                      data-testid="openicon"
                     />
                   )}
                 </Disclosure.Button>
