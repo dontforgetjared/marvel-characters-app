@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import joinClasses from '../../utils/joinClasses';
 
 type NavItemT = {
   href: string;
@@ -14,10 +15,6 @@ interface INavbarProps {
   logoComponent?: ReactNode;
   navItems?: NavItemT[];
   onChangeHandler?: () => void;
-}
-
-function joinClasses(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
 }
 
 function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = false }: INavbarProps) {
