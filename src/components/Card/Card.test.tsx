@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import Card from './Card';
 
@@ -46,16 +46,43 @@ describe('Card', () => {
 
   it('should render CardActions with action links', () => {
     const actions = [
-      { href: 'link1', label: 'Action 1' },
-      { href: 'link2', label: 'Action 2' },
+      { url: 'link1', type: 'Action 1' },
+      { url: 'link2', type: 'Action 2' },
     ];
 
     render(<Card.Actions actions={actions} />);
 
     actions.forEach((action) => {
-      const linkElement = screen.getByText(action.label);
+      const linkElement = screen.getByText(action.type);
       expect(linkElement).toBeInTheDocument();
-      expect(linkElement).toHaveAttribute('href', action.href);
+      expect(linkElement).toHaveAttribute('href', action.url);
     });
+  });
+
+  it('should render CardActions with external links', () => {
+    const actions = [
+      { url: 'link1', type: 'Action 1' },
+      { url: 'link2', type: 'Action 2' },
+    ];
+
+    render(<Card.Actions actions={actions} isExternal />);
+
+    actions.forEach((action) => {
+      const linkElement = screen.getByText(action.type);
+      expect(linkElement).toHaveAttribute('rel', 'norefferer noopener');
+      expect(linkElement).toHaveAttribute('target', '_blank');
+    });
+  });
+
+  it('should render CardActions with a button', async () => {
+    const mockHandler = vi.fn();
+    const actions = [
+      { url: 'link1', type: 'Action 1' },
+      { type: 'Action 2', onClick: () => mockHandler('Clicked!') },
+    ];
+    const rendered = render(<Card.Actions actions={actions} isExternal />);
+    await rendered.container.querySelector<HTMLButtonElement>('[type="button"]')?.click();
+
+    expect(mockHandler).toBeCalled();
   });
 });

@@ -5,8 +5,8 @@ import joinClasses from '../../utils/joinClasses';
 
 interface IPaginationProps {
   currentPageNum?: number;
-  limit: number;
-  totalResults: number;
+  limit?: number;
+  totalResults?: number;
   onPageChange?: (pageNum: number) => void;
 }
 
@@ -56,7 +56,7 @@ function Pagination({ currentPageNum = 1, limit = 25, onPageChange, totalResults
   return (
     <div
       data-testid="pagination"
-      className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
+      className="flex items-center justify-between border-t border-gray-200 bg-transparent py-6"
     >
       {totalPages > 1 ? (
         <div className="flex flex-1 justify-between sm:hidden">
@@ -94,7 +94,7 @@ function Pagination({ currentPageNum = 1, limit = 25, onPageChange, totalResults
             >
               <button
                 onClick={onPrev}
-                className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-75 disabled:hover:bg-none disabled:cursor-not-allowed"
+                className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 bg-white hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-75 disabled:hover:bg-none disabled:cursor-not-allowed"
                 type="button"
                 disabled={currentPage <= 1}
                 data-testid="prevBtn"
@@ -107,7 +107,7 @@ function Pagination({ currentPageNum = 1, limit = 25, onPageChange, totalResults
                   return (
                     <span
                       key={pageNum}
-                      className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0"
+                      className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0 bg-white"
                       data-testid="etc"
                     >
                       {ETC}
@@ -122,7 +122,7 @@ function Pagination({ currentPageNum = 1, limit = 25, onPageChange, totalResults
                     className={joinClasses(
                       pageNum === currentPage
                         ? 'z-10 inline-flex bg-indigo-600 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                        : '[&:nth-child(4)]:hidden [&:nth-child(6)]:hidden text-sm font-semibold focus:z-20 md:[&:nth-child(4)]:inline-flex md:[&:nth-child(6)]:inline-flex md:inline-flex hover:bg-gray-50',
+                        : '[&:nth-child(4)]:hidden [&:nth-child(6)]:hidden text-sm font-semibold focus:z-20 md:[&:nth-child(4)]:inline-flex md:[&:nth-child(6)]:inline-flex md:inline-flex hover:bg-gray-50 bg-white',
                       'relative text-gray-900 ring-1 ring-inset ring-gray-300 focus:outline-offset-0 items-center px-4 py-2'
                     )}
                     type="button"
@@ -133,7 +133,7 @@ function Pagination({ currentPageNum = 1, limit = 25, onPageChange, totalResults
               })}
               <button
                 onClick={onNext}
-                className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-75 disabled:hover:bg-none disabled:cursor-not-allowed"
+                className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-75 disabled:hover:bg-none disabled:cursor-not-allowed bg-white"
                 type="button"
                 disabled={currentPage >= totalPages}
                 data-testid="nextBtn"

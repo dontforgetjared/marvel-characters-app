@@ -13,16 +13,16 @@ const meta: Meta<typeof Card> = {
 
 const mockActions = [
   {
-    href: 'https://google.com',
-    label: 'Google',
+    url: 'https://google.com',
+    type: 'Google',
   },
   {
-    href: 'https://duckduckgo.com',
-    label: 'Duck Duck Go',
+    url: 'https://duckduckgo.com',
+    type: 'Duck Duck Go',
   },
   {
-    href: 'https://bing.com',
-    label: 'Bing',
+    url: 'https://bing.com',
+    type: 'Bing',
   },
 ];
 

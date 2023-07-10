@@ -11,9 +11,11 @@ interface ICardImageProps {
 
 interface ICardActionsProps {
   actions: {
-    href: string;
-    label: string;
+    onClick?: () => void;
+    type: string;
+    url?: string;
   }[];
+  isExternal?: boolean;
 }
 
 function Card({ children }: ICardProps) {
@@ -40,18 +42,31 @@ function CardText({ children }: ICardProps) {
   return <p className="mt-2 text-sm text-gray-500">{children}</p>;
 }
 
-function CardActions({ actions }: ICardActionsProps) {
+function CardActions({ actions, isExternal = false }: ICardActionsProps) {
+  const externalLink = isExternal ? { rel: 'norefferer noopener', target: '_blank' } : {};
   return (
     <div>
       <div className="-mt-px flex divide-x divide-gray-200">
         {actions.map((action) => (
-          <div className="flex w-1/2 flex-1 even:-ml-px" key={action.label}>
-            <a
-              href={action.href}
-              className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
-            >
-              {action.label}
-            </a>
+          <div className="flex w-1/2 flex-1 even:-ml-px" key={action.type}>
+            {/* eslint-disable react/jsx-props-no-spreading */}
+            {action.onClick ? (
+              <button
+                className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 capitalize"
+                onClick={() => action.onClick?.()}
+                type="button"
+              >
+                {action.type}
+              </button>
+            ) : (
+              <a
+                href={action.url}
+                className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 capitalize"
+                {...externalLink}
+              >
+                {action.type}
+              </a>
+            )}
           </div>
         ))}
       </div>
