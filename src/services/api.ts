@@ -6,11 +6,19 @@ export const marvelApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE_URL }),
   tagTypes: ['Characters'],
   endpoints: (builder) => ({
-    getAllCharacters: builder.query<CharacterResponse, void>({
-      query: () => `characters${import.meta.env.VITE_API_KEY_HASH}`,
+    getCharacters: builder.query<CharacterResponse, number>({
+      query: (offset) => ({
+        url: `characters`,
+        params: {
+          ts: import.meta.env.VITE_API_TS,
+          apikey: import.meta.env.VITE_API_KEY,
+          hash: import.meta.env.VITE_API_HASH,
+          offset,
+        },
+      }),
       transformResponse: (response: { data: CharacterResponse }) => response.data,
     }),
   }),
 });
 
-export const { useGetAllCharactersQuery } = marvelApi;
+export const { useGetCharactersQuery } = marvelApi;
