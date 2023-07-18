@@ -8,7 +8,7 @@ interface ICharactersProps {
 }
 
 function MarvelCharacters({ characters }: ICharactersProps) {
-  if (!characters) return <div>Nothing found :(</div>;
+  if (!characters?.length) return <p className="text-sm text-gray-700 mb-4"> Nothing found :(</p>;
 
   return (
     <Grid>

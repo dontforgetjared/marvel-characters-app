@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { useGetCharactersQuery } from '../services/api';
+import useDebounce from '../hooks/useDebounce';
 import Main from '../components/Layout/Main';
 import MarvelCharacters from '../features/MarvelCharacters';
 import Navbar from '../components/Navbar/Navbar';
+import Page from '../components/Layout/Page';
 import Pagination from '../components/Pagination/Pagination';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(20);
   const [offset, setOffset] = useState(0);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetCharactersQuery(offset);
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const { data, isLoading, isFetching, isError, isSuccess } = useGetCharactersQuery({
+    offset,
+    searchTerm: debouncedSearchTerm,
+  });
   const characters = data?.results;
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   const handlePageChange = (page: number) => {
     const prevPage = page - 1;
@@ -23,20 +26,28 @@ function App() {
     setOffset(newOffset);
   };
 
+  const handleSearchChange = (e: SyntheticEvent) => {
+    setSearchTerm((e.target as HTMLInputElement).value);
+  };
+
   return (
-    <>
-      <Navbar includeSearch />
-      <Main>
-        <MarvelCharacters characters={characters} />
-        <Pagination
-          currentPageNum={currentPage}
-          limit={data?.limit}
-          offset={data?.offset}
-          onPageChange={handlePageChange}
-          totalResults={data?.total}
-        />
-      </Main>
-    </>
+    <Page>
+      <Navbar onChangeHandler={(e) => handleSearchChange(e)} includeSearch />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <Main>
+          <MarvelCharacters characters={characters} />
+          <Pagination
+            currentPageNum={currentPage}
+            limit={data?.limit}
+            offset={data?.offset}
+            onPageChange={handlePageChange}
+            totalResults={data?.total}
+          />
+        </Main>
+      )}
+    </Page>
   );
 }
 

@@ -1,11 +1,11 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import Navbar from './Navbar';
 import MockLogo, { mockNavItems } from './Navbar.mock';
 
 describe('Navbar', () => {
-  it('should render properly with nav item and no search field', async () => {
+  it('should render properly with nav item and no search field', () => {
     render(<Navbar navItems={mockNavItems} />);
 
     expect(screen.getByText(/Google/i)).toBeVisible();
@@ -13,12 +13,28 @@ describe('Navbar', () => {
     expect(screen.queryByTestId('search')).not.toBeInTheDocument();
   });
 
-  it('should render with a search field', async () => {
+  it('should render with a search field', () => {
     render(<Navbar navItems={mockNavItems} includeSearch />);
-    expect(screen.queryByTestId('search')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
   });
 
-  it('should render with a logo component', async () => {
+  it('should fire onchange event when searching', () => {
+    const mockOnChange = vi.fn();
+    render(
+      <Navbar
+        navItems={mockNavItems}
+        logoComponent={<MockLogo />}
+        onChangeHandler={(e) => mockOnChange(e)}
+        includeSearch
+      />
+    );
+    const searchInput = screen.getByPlaceholderText('Search');
+    fireEvent.input(searchInput, { target: { value: 'FOOBAR' } });
+    expect(mockOnChange).toHaveBeenCalled();
+    expect((searchInput as HTMLInputElement).value).toBe('FOOBAR');
+  });
+
+  it('should render with a logo component', () => {
     render(<Navbar navItems={mockNavItems} logoComponent={<MockLogo />} />);
     expect(screen.queryByTestId('testlogo')).toBeInTheDocument();
   });

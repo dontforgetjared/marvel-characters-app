@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, SyntheticEvent } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -14,7 +14,7 @@ interface INavbarProps {
   includeSearch?: boolean;
   logoComponent?: ReactNode;
   navItems?: NavItemT[];
-  onChangeHandler?: () => void;
+  onChangeHandler?: (e: SyntheticEvent) => void;
 }
 
 function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = false }: INavbarProps) {
@@ -63,8 +63,7 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
                           placeholder="Search"
                           type="search"
                           tabIndex={0}
-                          onChange={onChangeHandler}
-                          data-testid="search"
+                          onChange={(e) => onChangeHandler?.(e)}
                         />
                       </div>
                     </label>

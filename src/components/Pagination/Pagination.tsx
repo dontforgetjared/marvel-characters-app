@@ -106,13 +106,15 @@ function Pagination({ currentPageNum = 1, limit = 25, offset = 0, onPageChange, 
         </div>
       ) : null}
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm text-gray-700" data-testid="showing">
-            Showing <span className="font-medium">{currentShownStart}</span> to{' '}
-            <span className="font-medium">{currentShownEnd}</span> of{' '}
-            <span className="font-medium">{totalResults}</span> results
-          </p>
-        </div>
+        {!!totalResults && (
+          <div>
+            <p className="text-sm text-gray-700" data-testid="showing">
+              Showing <span className="font-medium">{currentShownStart}</span> to{' '}
+              <span className="font-medium">{currentShownEnd}</span> of{' '}
+              <span className="font-medium">{totalResults}</span> results
+            </p>
+          </div>
+        )}
         {totalPages > 1 ? (
           <div>
             <nav
