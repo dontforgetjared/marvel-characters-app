@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import Image from '../Image/Image';
+
 interface ICardProps {
   children?: ReactNode;
 }
@@ -31,7 +33,7 @@ function CardBody({ children }: ICardProps) {
 }
 
 function CardImage({ imageSrc, altText = '' }: ICardImageProps) {
-  return <img className="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src={imageSrc} alt={altText} />;
+  return <Image src={imageSrc} alt={altText} height="8rem" width="8rem" classNames="mx-auto" isRounded />;
 }
 
 function CardHeader({ children }: ICardProps) {

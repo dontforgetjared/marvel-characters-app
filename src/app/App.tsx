@@ -6,6 +6,7 @@ import MarvelCharacters from '../features/MarvelCharacters';
 import Navbar from '../components/Navbar/Navbar';
 import Page from '../components/Layout/Page';
 import Pagination from '../components/Pagination/Pagination';
+import SkeletonCardGrid from '../components/Skeleton/SkeletonCardGrid';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +14,7 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetCharactersQuery({
+  const { data, isLoading, isFetching, isError } = useGetCharactersQuery({
     offset,
     searchTerm: debouncedSearchTerm,
   });
@@ -30,11 +31,16 @@ function App() {
     setSearchTerm((e.target as HTMLInputElement).value);
   };
 
+  // TODO: make an error component
+  if (isError) return <div>Error</div>;
+
   return (
     <Page>
       <Navbar onChangeHandler={(e) => handleSearchChange(e)} includeSearch />
-      {isLoading ? (
-        <div>Loading...</div>
+      {isLoading || isFetching ? (
+        <Main>
+          <SkeletonCardGrid cardCount={count} />
+        </Main>
       ) : (
         <Main>
           <MarvelCharacters characters={characters} />
