@@ -6,13 +6,14 @@ export const marvelApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE_URL }),
   tagTypes: ['Characters'],
   endpoints: (builder) => ({
-    getCharacters: builder.query<CharacterResponse, { offset: number; searchTerm: string }>({
-      query: ({ offset, searchTerm = '' }) => ({
+    getCharacters: builder.query<CharacterResponse, { limit: number; offset: number; searchTerm: string }>({
+      query: ({ limit = 20, offset, searchTerm = '' }) => ({
         url: `characters`,
         params: {
           ts: import.meta.env.VITE_API_TS,
           apikey: import.meta.env.VITE_API_KEY,
           hash: import.meta.env.VITE_API_HASH,
+          limit,
           offset,
           ...(searchTerm ? { nameStartsWith: searchTerm } : null),
         },
