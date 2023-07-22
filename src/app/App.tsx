@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import { useGetCharactersQuery } from '../services/api';
 import useDebounce from '../hooks/useDebounce';
+import Alert from '../components/Alert/Alert';
 import Main from '../components/Layout/Main';
 import MarvelCharacters from '../features/MarvelCharacters';
 import Navbar from '../components/Navbar/Navbar';
@@ -37,13 +38,11 @@ function App() {
     setCount(Number((e.target as HTMLSelectElement).value));
   };
 
-  // TODO: make an error component
-  if (isError) return <div>Error</div>;
-
   return (
     <Page>
       <Navbar onChangeHandler={(e) => handleSearchChange(e)} includeSearch />
       <Main>
+        {isError && <Alert message="There was an error retrieving the data from the Marvel API." type="error" />}
         <div className="flex justify-end">
           <div className="w-full sm:w-1/12 mb-4">
             <Select
@@ -59,6 +58,7 @@ function App() {
             />
           </div>
         </div>
+
         {isLoading || isFetching ? (
           <SkeletonCardGrid cardCount={count} />
         ) : (
