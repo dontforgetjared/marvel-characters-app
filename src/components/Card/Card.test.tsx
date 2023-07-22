@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import Card from './Card';
@@ -74,14 +74,15 @@ describe('Card', () => {
     });
   });
 
-  it('should render CardActions with a button', async () => {
+  it('should render CardActions with a button', () => {
     const mockHandler = vi.fn();
     const actions = [
       { url: 'link1', type: 'Action 1' },
       { type: 'Action 2', onClick: () => mockHandler('Clicked!') },
     ];
-    const rendered = render(<Card.Actions actions={actions} isExternal />);
-    await rendered.container.querySelector<HTMLButtonElement>('[type="button"]')?.click();
+    render(<Card.Actions actions={actions} isExternal />);
+    const buttonEL: HTMLButtonElement = screen.getByText('Action 2');
+    fireEvent.click(buttonEL);
 
     expect(mockHandler).toBeCalled();
   });

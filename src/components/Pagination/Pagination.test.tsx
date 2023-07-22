@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import Pagination from './Pagination';
@@ -31,42 +31,38 @@ describe('Pagination', () => {
     expect(screen.getByText(/10/)).toBeInTheDocument();
   });
 
-  it('should fire onPageChange handler on previous button click', async () => {
+  it('should fire onPageChange handler on previous button click', () => {
     const mockHandler = vi.fn();
-    const rendered = render(
-      <Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />
-    );
-    await rendered.container.querySelector<HTMLButtonElement>('[data-testid="prevBtn"]')?.click();
+    render(<Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />);
+    const buttonEl: HTMLButtonElement = screen.getByTestId('prevBtn');
+    fireEvent.click(buttonEl);
 
     expect(mockHandler).toBeCalled();
   });
 
   it('should fire onPageChange handler on next button click', async () => {
     const mockHandler = vi.fn();
-    const rendered = render(
-      <Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />
-    );
-    await rendered.container.querySelector<HTMLButtonElement>('[data-testid="nextBtn"]')?.click();
+    render(<Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />);
+    const buttonEl: HTMLButtonElement = screen.getByTestId('nextBtn');
+    fireEvent.click(buttonEl);
 
     expect(mockHandler).toBeCalled();
   });
 
   it('should fire onPageChange handler on first button click', async () => {
     const mockHandler = vi.fn();
-    const rendered = render(
-      <Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />
-    );
-    await rendered.container.querySelector<HTMLButtonElement>('[data-testid="firstBtn"]')?.click();
+    render(<Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />);
+    const buttonEl: HTMLButtonElement = screen.getByTestId('firstBtn');
+    fireEvent.click(buttonEl);
 
     expect(mockHandler).toBeCalled();
   });
 
   it('should fire onPageChange handler on last button click', async () => {
     const mockHandler = vi.fn();
-    const rendered = render(
-      <Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />
-    );
-    await rendered.container.querySelector<HTMLButtonElement>('[data-testid="lastBtn"]')?.click();
+    render(<Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />);
+    const buttonEl: HTMLButtonElement = screen.getByTestId('lastBtn');
+    fireEvent.click(buttonEl);
 
     expect(mockHandler).toBeCalled();
   });

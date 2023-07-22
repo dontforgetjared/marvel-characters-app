@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent } from 'react';
 import joinClasses from '../../utils/joinClasses';
 
 type SelectOptions = {
