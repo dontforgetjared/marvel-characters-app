@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { profileOpen, selectActive, selectProfile } from './characterSlice';
+import Accordion from '../../components/Accordion/Accordion';
 import SlideOver from '../../components/SlideOver/SlideOver';
 import type { Character } from '../../services/types';
 import getComicLinkFromProfileURLs from '../../utils/getComicLinkFromProfileURLs';
@@ -18,6 +19,11 @@ function CharacterProfile() {
     dispatch(profileOpen(false));
   };
 
+  const generateContentList = (comics: { name: string }[]) => {
+    const list = comics.map((comic: { name: string }) => <li key={comic.name}>{comic.name}</li>);
+    return <ul>{list}</ul>;
+  };
+
   return (
     <SlideOver isOpen={isProfileOpen} closeHandler={onProfileClose} panelTitle="Character Profile">
       <div className="divide-y divide-gray-200">
@@ -27,10 +33,10 @@ function CharacterProfile() {
             <div>
               <div className="-m-1 flex">
                 <div className="inline-flex overflow-hidden rounded-lg border-4 border-white">
-                  {activeCharacter && activeCharacter.thumbnail && (
+                  {activeCharacter?.thumbnail && (
                     <img
                       className="h-24 w-24 flex-shrink-0 sm:h-40 sm:w-40 lg:h-48 lg:w-48"
-                      src={`${activeCharacter.thumbnail.path}.${activeCharacter.thumbnail.extension}`}
+                      src={`${activeCharacter?.thumbnail?.path}.${activeCharacter?.thumbnail?.extension}`}
                       alt={activeCharacter.name}
                     />
                   )}
@@ -51,7 +57,7 @@ function CharacterProfile() {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    Message
+                    Comics
                   </a>
                 </div>
               )}
@@ -69,6 +75,17 @@ function CharacterProfile() {
               </div>
             )}
           </dl>
+        </div>
+        <div className="sm:divide-y">
+          {activeCharacter?.comics?.available && (
+            <Accordion title="Comics" content={generateContentList(activeCharacter.comics.items)} />
+          )}
+          {activeCharacter?.series?.available && (
+            <Accordion title="Series" content={generateContentList(activeCharacter.series.items)} />
+          )}
+          {activeCharacter?.stories?.available && (
+            <Accordion title="Stories" content={generateContentList(activeCharacter.stories.items)} />
+          )}
         </div>
       </div>
     </SlideOver>

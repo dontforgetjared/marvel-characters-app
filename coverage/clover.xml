@@ -1,7 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1690945719340" clover="3.2.0">
-  <project timestamp="1690945719340" name="All files">
-    <metrics statements="782" coveredstatements="782" conditionals="85" coveredconditionals="84" methods="37" coveredmethods="34" elements="904" coveredelements="900" complexity="0" loc="782" ncloc="782" packages="10" files="20" classes="20"/>
+<coverage generated="1691255944538" clover="3.2.0">
+  <project timestamp="1691255944538" name="All files">
+    <metrics statements="832" coveredstatements="832" conditionals="91" coveredconditionals="90" methods="39" coveredmethods="36" elements="962" coveredelements="958" complexity="0" loc="832" ncloc="832" packages="11" files="21" classes="21"/>
+    <package name="components.Accordion">
+      <metrics statements="39" coveredstatements="39" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+      <file name="Accordion.tsx" path="/Users/jaredcole/Sites/marvel-characters-app/src/components/Accordion/Accordion.tsx">
+        <metrics statements="39" coveredstatements="39" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="18" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="23" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
+        <line num="30" count="6" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="components.Alert">
       <metrics statements="57" coveredstatements="57" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="Alert.tsx" path="/Users/jaredcole/Sites/marvel-characters-app/src/components/Alert/Alert.tsx">
@@ -748,9 +793,9 @@
       </file>
     </package>
     <package name="components.SlideOver">
-      <metrics statements="75" coveredstatements="75" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <metrics statements="86" coveredstatements="86" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
       <file name="SlideOver.tsx" path="/Users/jaredcole/Sites/marvel-characters-app/src/components/SlideOver/SlideOver.tsx">
-        <metrics statements="75" coveredstatements="75" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <metrics statements="86" coveredstatements="86" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -824,8 +869,19 @@
         <line num="71" count="6" type="stmt"/>
         <line num="72" count="6" type="stmt"/>
         <line num="73" count="6" type="stmt"/>
-        <line num="74" count="1" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
+        <line num="74" count="6" type="stmt"/>
+        <line num="75" count="6" type="stmt"/>
+        <line num="76" count="6" type="stmt"/>
+        <line num="77" count="6" type="stmt"/>
+        <line num="78" count="6" type="stmt"/>
+        <line num="79" count="6" type="stmt"/>
+        <line num="80" count="6" type="stmt"/>
+        <line num="81" count="6" type="stmt"/>
+        <line num="82" count="6" type="stmt"/>
+        <line num="83" count="6" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
       </file>
     </package>
     <package name="utils">
@@ -850,9 +906,9 @@
       </file>
       <file name="joinClasses.ts" path="/Users/jaredcole/Sites/marvel-characters-app/src/utils/joinClasses.ts">
         <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="1" count="157" type="cond" truecount="1" falsecount="0"/>
-        <line num="2" count="157" type="stmt"/>
-        <line num="3" count="157" type="stmt"/>
+        <line num="1" count="163" type="cond" truecount="1" falsecount="0"/>
+        <line num="2" count="163" type="stmt"/>
+        <line num="3" count="163" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
       </file>

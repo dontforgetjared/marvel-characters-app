@@ -4,15 +4,30 @@ export type CharacterURLs = {
 };
 
 export type Character = {
-  comics: object;
+  comics: {
+    available: number;
+    items: {
+      name: string;
+    }[];
+  };
   description: string;
   events: object;
   id: number;
   modified: string;
   name: string;
   resourceURI: string;
-  series: object;
-  stories: object;
+  series: {
+    available: number;
+    items: {
+      name: string;
+    }[];
+  };
+  stories: {
+    available: number;
+    items: {
+      name: string;
+    }[];
+  };
   thumbnail: {
     path: string;
     extension: string;
