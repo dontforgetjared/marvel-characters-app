@@ -16,7 +16,7 @@ interface INavbarProps {
   navItems?: NavItemT[];
   onChangeHandler?: (e: SyntheticEvent) => void;
 }
-
+// TODO: Hide hamburger menu if nav list is empty
 function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = false }: INavbarProps) {
   return (
     <Disclosure as="header" className="bg-white dark:bg-zinc-800 shadow">

@@ -44,5 +44,12 @@ module.exports = {
         peerDependencies: true,
       },
     ],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
+      },
+    ],
   },
 };

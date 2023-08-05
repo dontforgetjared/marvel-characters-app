@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import range from './range';
+import type { CharacterURLs } from '../services/types';
+
+import getComicLinkFromProfileURLs from './getComicLinkFromProfileURLs';
+import isObjectEmpty from './isObjectEmpty';
 import joinClasses from './joinClasses';
+import range from './range';
 import truncateText from './truncateText';
 
 describe('range()', () => {
@@ -35,5 +39,42 @@ describe('truncateText()', () => {
   it('should return a string with 50 characters', () => {
     const truncatedText = truncateText(mockString50, 80);
     expect(truncatedText.length).toEqual(50);
+  });
+});
+
+describe('getComicLinkFromProfileURLs()', () => {
+  const mockURLarr: CharacterURLs[] = [
+    {
+      type: 'detail',
+      url: 'https://example.com',
+    },
+    {
+      type: 'comiclink',
+      url: 'https://anotherexample.com',
+    },
+  ];
+
+  it('should filter an array of objects and return the object with type: comiclink', () => {
+    const filteredArr = getComicLinkFromProfileURLs(mockURLarr);
+    expect(filteredArr).toEqual({
+      type: 'comiclink',
+      url: 'https://anotherexample.com',
+    });
+  });
+});
+
+describe('isObjectEmpty()', () => {
+  it('should return true if object is empty', () => {
+    const mockObj = {};
+
+    expect(isObjectEmpty(mockObj)).toEqual(true);
+  });
+
+  it('should return false if object is not empty', () => {
+    const mockObj = {
+      property: 'string',
+    };
+
+    expect(isObjectEmpty(mockObj)).toEqual(false);
   });
 });

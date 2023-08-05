@@ -1,23 +1,31 @@
-import Card from '../components/Card/Card';
-import Grid from '../components/Layout/Grid';
-import truncateText from '../utils/truncateText';
-import type { Character } from '../services/types';
+import { useDispatch } from 'react-redux';
+import Card from '../../components/Card/Card';
+import Grid from '../../components/Layout/Grid';
+import truncateText from '../../utils/truncateText';
+import type { Character } from '../../services/types';
+import { active, profileOpen } from './characterSlice';
+import getComicLinkFromProfileURLs from '../../utils/getComicLinkFromProfileURLs';
 
 interface ICharactersProps {
   characters?: Character[];
 }
 
-function MarvelCharacters({ characters }: ICharactersProps) {
+function CharacterCards({ characters }: ICharactersProps) {
+  const dispatch = useDispatch();
+
   if (!characters?.length) return <p className="text-sm text-gray-700 mb-4"> Nothing found :(</p>;
 
   return (
     <Grid>
       {characters?.map((character) => {
-        const charactersComicList = character.urls.filter((url) => url.type === 'comiclink')[0];
+        const charactersComicList = getComicLinkFromProfileURLs(character.urls);
         const actions = [
           {
             type: 'Details',
-            onClick: () => console.log(character.id),
+            onClick: () => {
+              dispatch(active(character));
+              dispatch(profileOpen(true));
+            },
           },
           {
             type: 'Comics',
@@ -43,4 +51,4 @@ function MarvelCharacters({ characters }: ICharactersProps) {
   );
 }
 
-export default MarvelCharacters;
+export default CharacterCards;

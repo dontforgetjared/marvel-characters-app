@@ -45,7 +45,8 @@ function CardText({ children }: ICardProps) {
 }
 
 function CardActions({ actions, isExternal = false }: ICardActionsProps) {
-  const externalLink = isExternal ? { rel: 'norefferer noopener', target: '_blank' } : {};
+  // TODO: make accessible. Use aria, role labels as needed
+  const externalLink = isExternal ? { rel: 'noreferrer noopener', target: '_blank' } : {};
   return (
     <div>
       <div className="-mt-px flex divide-x divide-gray-200">

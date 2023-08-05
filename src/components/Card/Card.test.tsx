@@ -69,7 +69,7 @@ describe('Card', () => {
 
     actions.forEach((action) => {
       const linkElement = screen.getByText(action.type);
-      expect(linkElement).toHaveAttribute('rel', 'norefferer noopener');
+      expect(linkElement).toHaveAttribute('rel', 'noreferrer noopener');
       expect(linkElement).toHaveAttribute('target', '_blank');
     });
   });

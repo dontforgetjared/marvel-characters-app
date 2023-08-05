@@ -3,7 +3,8 @@ import { useGetCharactersQuery } from '../services/api';
 import useDebounce from '../hooks/useDebounce';
 import Alert from '../components/Alert/Alert';
 import Main from '../components/Layout/Main';
-import MarvelCharacters from '../features/MarvelCharacters';
+import CharacterCards from '../features/characters/CharacterCards';
+import CharacterProfile from '../features/characters/CharacterProfile';
 import Navbar from '../components/Navbar/Navbar';
 import Page from '../components/Layout/Page';
 import Pagination from '../components/Pagination/Pagination';
@@ -43,27 +44,27 @@ function App() {
       <Navbar onChangeHandler={(e) => handleSearchChange(e)} includeSearch />
       <Main>
         {isError && <Alert message="There was an error retrieving the data from the Marvel API." type="error" />}
-        <div className="flex justify-end">
-          <div className="w-full sm:w-1/12 mb-4">
-            <Select
-              labelText="Results per page"
-              options={[
-                { value: '20', label: '20' },
-                { value: '40', label: '40' },
-                { value: '60', label: '60' },
-                { value: '80', label: '80' },
-                { value: '100', label: '100' },
-              ]}
-              handleChange={(e) => handleSelectChange(e)}
-            />
-          </div>
-        </div>
 
         {isLoading || isFetching ? (
           <SkeletonCardGrid cardCount={count} />
         ) : (
           <>
-            <MarvelCharacters characters={characters} />
+            <div className="flex justify-end">
+              <div className="w-full sm:w-1/12 mb-4">
+                <Select
+                  labelText="Results per page"
+                  options={[
+                    { value: '20', label: '20' },
+                    { value: '40', label: '40' },
+                    { value: '60', label: '60' },
+                    { value: '80', label: '80' },
+                    { value: '100', label: '100' },
+                  ]}
+                  handleChange={(e) => handleSelectChange(e)}
+                />
+              </div>
+            </div>
+            <CharacterCards characters={characters} />
             <Pagination
               currentPageNum={currentPage}
               limit={data?.limit}
@@ -74,6 +75,7 @@ function App() {
           </>
         )}
       </Main>
+      <CharacterProfile />
     </Page>
   );
 }
