@@ -28,6 +28,7 @@ function CharacterCards({ characters }: ICharactersProps) {
           {
             type: 'Comics',
             url: charactersComicList.url,
+            isExternal: true,
           },
         ];
 
@@ -41,7 +42,7 @@ function CharacterCards({ characters }: ICharactersProps) {
               <Card.Header>{character.name}</Card.Header>
               {character.description && <Card.Text>{truncateText(character.description, 80)}</Card.Text>}
             </Card.Body>
-            <Card.Actions actions={actions} isExternal />
+            <Card.Actions actions={actions} />
           </Card>
         );
       })}

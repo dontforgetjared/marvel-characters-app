@@ -16,7 +16,7 @@ interface INavbarProps {
   navItems?: NavItemT[];
   onChangeHandler?: (e: SyntheticEvent) => void;
 }
-// TODO: Hide hamburger menu if nav list is empty
+
 function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = false }: INavbarProps) {
   return (
     <Disclosure as="header" className="bg-white dark:bg-zinc-800 shadow">
@@ -54,12 +54,12 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
                       <span className="sr-only">Search</span>
                       <div className="relative">
                         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                          <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                          <MagnifyingGlassIcon className="h-5 w-5 text-gray-800" aria-hidden="true" />
                         </div>
                         <input
                           id="search"
                           name="search"
-                          className="block w-full rounded-md border-0 bg-white dark:bg-zinc-700 py-1.5 pl-10 pr-3 text-gray-900 dark:text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-inset focus:ring-rose-300 dark:focus:bg-white dark:focus:text-gray-900 sm:text-sm sm:leading-6 outline-none"
+                          className="block w-full rounded-md border-0 bg-white dark:bg-zinc-400 py-1.5 pl-10 pr-3 text-gray-900 dark:text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-800 focus:ring-inset focus:ring-rose-300 dark:focus:bg-white dark:focus:text-gray-900 sm:text-sm sm:leading-6 outline-none"
                           placeholder="Search"
                           type="search"
                           tabIndex={0}
@@ -70,29 +70,31 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
                   </div>
                 </div>
               )}
-              <div className="flex items-center lg:hidden">
-                <Disclosure.Button
-                  className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-zinc-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-inset dark:focus:ring-white"
-                  role="button"
-                >
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon
-                      className="block h-6 w-6"
-                      aria-expanded="true"
-                      aria-label="Mobile Navigation Close Button"
-                      data-testid="closeicon"
-                    />
-                  ) : (
-                    <Bars3Icon
-                      className="block h-6 w-6"
-                      aria-expanded="false"
-                      aria-label="Mobile Navigation Open Button"
-                      data-testid="openicon"
-                    />
-                  )}
-                </Disclosure.Button>
-              </div>
+              {navItems && (
+                <div className="flex items-center lg:hidden">
+                  <Disclosure.Button
+                    className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-zinc-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-inset dark:focus:ring-white"
+                    role="button"
+                  >
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XMarkIcon
+                        className="block h-6 w-6"
+                        aria-expanded="true"
+                        aria-label="Mobile Navigation Close Button"
+                        data-testid="closeicon"
+                      />
+                    ) : (
+                      <Bars3Icon
+                        className="block h-6 w-6"
+                        aria-expanded="false"
+                        aria-label="Mobile Navigation Open Button"
+                        data-testid="openicon"
+                      />
+                    )}
+                  </Disclosure.Button>
+                </div>
+              )}
             </div>
           </div>
 

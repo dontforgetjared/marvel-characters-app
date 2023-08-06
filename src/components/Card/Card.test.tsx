@@ -46,8 +46,8 @@ describe('Card', () => {
 
   it('should render CardActions with action links', () => {
     const actions = [
-      { url: 'link1', type: 'Action 1' },
-      { url: 'link2', type: 'Action 2' },
+      { url: 'link1', type: 'Details' },
+      { url: 'link2', type: 'Comics' },
     ];
 
     render(<Card.Actions actions={actions} />);
@@ -61,11 +61,11 @@ describe('Card', () => {
 
   it('should render CardActions with external links', () => {
     const actions = [
-      { url: 'link1', type: 'Action 1' },
-      { url: 'link2', type: 'Action 2' },
+      { url: 'link1', type: 'Details', isExternal: true },
+      { url: 'link2', type: 'Comics', isExternal: true },
     ];
 
-    render(<Card.Actions actions={actions} isExternal />);
+    render(<Card.Actions actions={actions} />);
 
     actions.forEach((action) => {
       const linkElement = screen.getByText(action.type);
@@ -78,9 +78,9 @@ describe('Card', () => {
     const mockHandler = vi.fn();
     const actions = [
       { url: 'link1', type: 'Action 1' },
-      { type: 'Action 2', onClick: () => mockHandler('Clicked!') },
+      { type: 'Action 2', onClick: () => mockHandler('Clicked!'), isExternal: true },
     ];
-    render(<Card.Actions actions={actions} isExternal />);
+    render(<Card.Actions actions={actions} />);
     const buttonEL: HTMLButtonElement = screen.getByText('Action 2');
     fireEvent.click(buttonEL);
 

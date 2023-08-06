@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>85/85</span>
+                <span class='fraction'>88/88</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>85/85</span>
+                <span class='fraction'>88/88</span>
             </div>
         
             
@@ -148,7 +148,12 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -194,7 +199,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -211,6 +215,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -234,6 +240,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ReactNode } from 'react';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 &nbsp;
 import Image from '../Image/Image';
 &nbsp;
@@ -251,13 +258,14 @@ interface ICardActionsProps {
     onClick?: () =&gt; void;
     type: string;
     url?: string;
+    isExternal?: boolean;
   }[];
   isExternal?: boolean;
 }
 &nbsp;
 function Card({ children }: ICardProps) {
   return (
-    &lt;div className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"&gt;
+    &lt;div className="col-span-1 flex flex-col divide-y divide-gray-200 dark:divide-zinc-800 rounded-lg bg-white dark:bg-zinc-600 text-center shadow"&gt;
       {children}
     &lt;/div&gt;
   );
@@ -272,36 +280,37 @@ function CardImage({ imageSrc, altText = '' }: ICardImageProps) {
 }
 &nbsp;
 function CardHeader({ children }: ICardProps) {
-  return &lt;h3 className="mt-6 text-sm font-medium text-gray-900"&gt;{children}&lt;/h3&gt;;
+  return &lt;h3 className="mt-6 text-sm font-medium text-gray-900 dark:text-zinc-200"&gt;{children}&lt;/h3&gt;;
 }
 &nbsp;
 function CardText({ children }: ICardProps) {
-  return &lt;p className="mt-2 text-sm text-gray-500"&gt;{children}&lt;/p&gt;;
+  return &lt;p className="mt-2 text-sm text-gray-500 dark:text-zinc-300"&gt;{children}&lt;/p&gt;;
 }
 &nbsp;
-function CardActions({ actions, isExternal = false }: ICardActionsProps) {
-  // TODO: make accessible. Use aria, role labels as needed
-  const externalLink = isExternal ? { rel: 'noreferrer noopener', target: '_blank' } : {};
+function CardActions({ actions }: ICardActionsProps) {
+  const externalLink = (isExternal: boolean) =&gt; (isExternal ? { rel: 'noreferrer noopener', target: '_blank' } : {});
   return (
     &lt;div&gt;
-      &lt;div className="-mt-px flex divide-x divide-gray-200"&gt;
+      &lt;div className="-mt-px flex divide-x divide-gray-200 dark:divide-zinc-800"&gt;
         {actions.map((action) =&gt; (
           &lt;div className="flex w-1/2 flex-1 even:-ml-px" key={action.type}&gt;
             {/* eslint-disable react/jsx-props-no-spreading */}
             {action.onClick ? (
               &lt;button
-                className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 capitalize"
+                className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 dark:text-zinc-200 capitalize"
                 onClick={() =&gt; action.onClick?.()}
                 type="button"
               &gt;
+                {action.isExternal &amp;&amp; &lt;ArrowTopRightOnSquareIcon className="w-4 h-4" /&gt;}
                 {action.type}
               &lt;/button&gt;
             ) : (
               &lt;a
                 href={action.url}
-                className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 capitalize"
-                {...externalLink}
+                className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900 dark:text-zinc-200 capitalize"
+                {...externalLink(action.isExternal || false)}
               &gt;
+                {action.isExternal &amp;&amp; &lt;ArrowTopRightOnSquareIcon className="w-4 h-4" /&gt;}
                 {action.type}
               &lt;/a&gt;
             )}
@@ -325,7 +334,7 @@ export default Card;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-06T17:31:03.781Z
+                at 2023-08-06T22:30:25.371Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

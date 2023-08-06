@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import { profileOpen, selectActive, selectProfile } from './characterSlice';
-import Accordion from '../../components/Accordion/Accordion';
-import SlideOver from '../../components/SlideOver/SlideOver';
-import type { Character } from '../../services/types';
 import getComicLinkFromProfileURLs from '../../utils/getComicLinkFromProfileURLs';
 import isObjectEmpty from '../../utils/isObjectEmpty';
+import Accordion from '../../components/Accordion/Accordion';
+import SlideOver from '../../components/SlideOver/SlideOver';
+
+import type { Character } from '../../services/types';
 
 function CharacterProfile() {
   const dispatch = useDispatch();
@@ -12,8 +14,6 @@ function CharacterProfile() {
   const isProfileOpen = useSelector(selectProfile);
 
   const charactersComicList = !isObjectEmpty(activeCharacter) && getComicLinkFromProfileURLs(activeCharacter.urls);
-
-  // TODO: add external link icon to comics list button and update brand colors
 
   const onProfileClose = () => {
     dispatch(profileOpen(false));
@@ -26,13 +26,13 @@ function CharacterProfile() {
 
   return (
     <SlideOver isOpen={isProfileOpen} closeHandler={onProfileClose} panelTitle="Character Profile">
-      <div className="divide-y divide-gray-200">
+      <div className="divide-y divide-gray-200 dark:divide-zinc-800">
         <div className="pb-6">
-          <div className="h-24 bg-indigo-700 sm:h-20 lg:h-28" />
+          <div className="h-24 bg-red-800 sm:h-20 lg:h-28" />
           <div className="-mt-12 flow-root px-4 sm:-mt-8 sm:flex sm:items-end sm:px-6 lg:-mt-16">
             <div>
               <div className="-m-1 flex">
-                <div className="inline-flex overflow-hidden rounded-lg border-4 border-white">
+                <div className="inline-flex overflow-hidden rounded-lg border-4 border-white dark:border-zinc-300">
                   {activeCharacter?.thumbnail && (
                     <img
                       className="h-24 w-24 flex-shrink-0 sm:h-40 sm:w-40 lg:h-48 lg:w-48"
@@ -46,17 +46,20 @@ function CharacterProfile() {
             <div className="mt-6 sm:ml-6 sm:flex-1">
               <div>
                 <div className="flex items-center">
-                  <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">{activeCharacter.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-zinc-200 sm:text-2xl">
+                    {activeCharacter.name}
+                  </h3>
                 </div>
               </div>
               {charactersComicList && (
                 <div className="mt-5 flex flex-wrap space-y-3 sm:space-x-3 sm:space-y-0">
                   <a
                     href={charactersComicList.url}
-                    className="inline-flex w-full flex-shrink-0 items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:flex-1"
+                    className="inline-flex items-center justify-center rounded-md bg-red-800 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     target="_blank"
                     rel="noreferrer noopener"
                   >
+                    <ArrowTopRightOnSquareIcon className="w-4 h-4 mr-2" />
                     Comics
                   </a>
                 </div>
@@ -68,15 +71,17 @@ function CharacterProfile() {
           <dl className="space-y-8 sm:space-y-0 sm:divide-y sm:divide-gray-200">
             {activeCharacter.description && (
               <div className="sm:flex sm:px-6 sm:py-5">
-                <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0 lg:w-48">Bio</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:ml-6 sm:mt-0">
+                <dt className="text-sm font-medium text-gray-500 dark:text-zinc-300 sm:w-40 sm:flex-shrink-0 lg:w-48">
+                  Bio
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-zinc-200 sm:col-span-2 sm:ml-6 sm:mt-0">
                   <p>{activeCharacter?.description}</p>
                 </dd>
               </div>
             )}
           </dl>
         </div>
-        <div className="sm:divide-y">
+        <div className="sm:divide-y dark:divide-zinc-800">
           {activeCharacter?.comics?.available ? (
             <Accordion title="Comics" content={generateContentList(activeCharacter.comics.items)} />
           ) : null}

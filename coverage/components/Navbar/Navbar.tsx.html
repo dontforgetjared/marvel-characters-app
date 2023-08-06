@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>126/126</span>
+                <span class='fraction'>128/128</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>126/126</span>
+                <span class='fraction'>128/128</span>
             </div>
         
             
@@ -189,7 +189,9 @@
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -268,6 +270,7 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -281,6 +284,7 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -333,7 +337,7 @@ interface INavbarProps {
   navItems?: NavItemT[];
   onChangeHandler?: (e: SyntheticEvent) =&gt; void;
 }
-// TODO: Hide hamburger menu if nav list is empty
+&nbsp;
 function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = false }: INavbarProps) {
   return (
     &lt;Disclosure as="header" className="bg-white dark:bg-zinc-800 shadow"&gt;
@@ -371,12 +375,12 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
                       &lt;span className="sr-only"&gt;Search&lt;/span&gt;
                       &lt;div className="relative"&gt;
                         &lt;div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"&gt;
-                          &lt;MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /&gt;
+                          &lt;MagnifyingGlassIcon className="h-5 w-5 text-gray-800" aria-hidden="true" /&gt;
                         &lt;/div&gt;
                         &lt;input
                           id="search"
                           name="search"
-                          className="block w-full rounded-md border-0 bg-white dark:bg-zinc-700 py-1.5 pl-10 pr-3 text-gray-900 dark:text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-inset focus:ring-rose-300 dark:focus:bg-white dark:focus:text-gray-900 sm:text-sm sm:leading-6 outline-none"
+                          className="block w-full rounded-md border-0 bg-white dark:bg-zinc-400 py-1.5 pl-10 pr-3 text-gray-900 dark:text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-800 focus:ring-inset focus:ring-rose-300 dark:focus:bg-white dark:focus:text-gray-900 sm:text-sm sm:leading-6 outline-none"
                           placeholder="Search"
                           type="search"
                           tabIndex={0}
@@ -387,29 +391,31 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
                   &lt;/div&gt;
                 &lt;/div&gt;
               )}
-              &lt;div className="flex items-center lg:hidden"&gt;
-                &lt;Disclosure.Button
-                  className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-zinc-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-inset dark:focus:ring-white"
-                  role="button"
-                &gt;
-                  &lt;span className="sr-only"&gt;Open main menu&lt;/span&gt;
-                  {open ? (
-                    &lt;XMarkIcon
-                      className="block h-6 w-6"
-                      aria-expanded="true"
-                      aria-label="Mobile Navigation Close Button"
-                      data-testid="closeicon"
-                    /&gt;
-                  ) : (
-                    &lt;Bars3Icon
-                      className="block h-6 w-6"
-                      aria-expanded="false"
-                      aria-label="Mobile Navigation Open Button"
-                      data-testid="openicon"
-                    /&gt;
-                  )}
-                &lt;/Disclosure.Button&gt;
-              &lt;/div&gt;
+              {navItems &amp;&amp; (
+                &lt;div className="flex items-center lg:hidden"&gt;
+                  &lt;Disclosure.Button
+                    className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-zinc-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500 dark:text-gray-400 dark:hover:bg-zinc-700 dark:hover:text-white dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-inset dark:focus:ring-white"
+                    role="button"
+                  &gt;
+                    &lt;span className="sr-only"&gt;Open main menu&lt;/span&gt;
+                    {open ? (
+                      &lt;XMarkIcon
+                        className="block h-6 w-6"
+                        aria-expanded="true"
+                        aria-label="Mobile Navigation Close Button"
+                        data-testid="closeicon"
+                      /&gt;
+                    ) : (
+                      &lt;Bars3Icon
+                        className="block h-6 w-6"
+                        aria-expanded="false"
+                        aria-label="Mobile Navigation Open Button"
+                        data-testid="openicon"
+                      /&gt;
+                    )}
+                  &lt;/Disclosure.Button&gt;
+                &lt;/div&gt;
+              )}
             &lt;/div&gt;
           &lt;/div&gt;
 &nbsp;
@@ -448,7 +454,7 @@ export default Navbar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-06T17:31:03.781Z
+                at 2023-08-06T22:30:25.371Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

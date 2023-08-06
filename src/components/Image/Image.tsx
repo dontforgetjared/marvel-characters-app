@@ -18,7 +18,7 @@ function Image({ alt, classNames = '', height = 'auto', isRounded = false, src, 
       {isLoading && (
         <div className="animate-pulse">
           <div
-            className={joinClasses(isRounded ? 'rounded-full' : '', 'bg-slate-200', classNames)}
+            className={joinClasses(isRounded ? 'rounded-full' : '', 'bg-slate-200 dark:bg-zinc-900', classNames)}
             style={{ height, width }}
           />
           <div className="sr-only">Loading</div>

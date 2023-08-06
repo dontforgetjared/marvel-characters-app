@@ -31,6 +31,11 @@ describe('Pagination', () => {
     expect(screen.getByText(/10/)).toBeInTheDocument();
   });
 
+  it('should render the correct number of results when the limit and total results are equal', () => {
+    render(<Pagination limit={20} totalResults={20} offset={0} />);
+    expect(screen.getByTestId('showing').textContent).toBe('Showing 1 to 20 of 20 results');
+  });
+
   it('should fire onPageChange handler on previous button click', () => {
     const mockHandler = vi.fn();
     render(<Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />);
