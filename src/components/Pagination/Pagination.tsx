@@ -27,7 +27,16 @@ function Pagination({ currentPageNum = 1, limit = 25, offset = 0, onPageChange, 
   const endPageGroup = range(totalPages - maxPageNums, totalPages);
   const isEndGroup = endPageGroup.includes(currentPage);
   const currentShownStart = offset + 1;
-  const currentShownEnd = currentPage === totalPages ? offset + (totalResults % limit) : offset + limit;
+  let currentShownEnd;
+  if (currentPage === totalPages) {
+    if (totalResults === limit) {
+      currentShownEnd = limit;
+    } else {
+      currentShownEnd = offset + (totalResults % limit);
+    }
+  } else {
+    currentShownEnd = offset + limit;
+  }
 
   let paginationRange: PaginationRangeT[] = [];
 

@@ -12,9 +12,17 @@ interface ISelectProps {
   labelText?: string;
   options: SelectOptions[];
   showLabel?: boolean;
+  value?: string;
 }
 
-function Select({ elementId = 'select', handleChange, labelText = '', showLabel = false, options }: ISelectProps) {
+function Select({
+  elementId = 'select',
+  handleChange,
+  labelText = '',
+  showLabel = false,
+  options,
+  value = '',
+}: ISelectProps) {
   const labelCssClasses = joinClasses(showLabel ? '' : 'sr-only', 'block text-sm font-medium leading-6 text-gray-900');
   const onChangeHandler = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -33,6 +41,7 @@ function Select({ elementId = 'select', handleChange, labelText = '', showLabel 
         name={elementId}
         onChange={onChangeHandler}
         data-testid="select"
+        value={value}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

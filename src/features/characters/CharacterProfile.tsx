@@ -77,15 +77,15 @@ function CharacterProfile() {
           </dl>
         </div>
         <div className="sm:divide-y">
-          {activeCharacter?.comics?.available && (
+          {activeCharacter?.comics?.available ? (
             <Accordion title="Comics" content={generateContentList(activeCharacter.comics.items)} />
-          )}
-          {activeCharacter?.series?.available && (
+          ) : null}
+          {activeCharacter?.series?.available ? (
             <Accordion title="Series" content={generateContentList(activeCharacter.series.items)} />
-          )}
-          {activeCharacter?.stories?.available && (
+          ) : null}
+          {activeCharacter?.stories?.available ? (
             <Accordion title="Stories" content={generateContentList(activeCharacter.stories.items)} />
-          )}
+          ) : null}
         </div>
       </div>
     </SlideOver>

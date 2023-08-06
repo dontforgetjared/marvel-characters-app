@@ -13,8 +13,6 @@ interface ICharactersProps {
 function CharacterCards({ characters }: ICharactersProps) {
   const dispatch = useDispatch();
 
-  if (!characters?.length) return <p className="text-sm text-gray-700 mb-4"> Nothing found :(</p>;
-
   return (
     <Grid>
       {characters?.map((character) => {
