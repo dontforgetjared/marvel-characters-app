@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
 import Characters from '../features/characters/Characters';
+import Logo from '../components/Logo/Logo';
 import Main from '../components/Layout/Main';
 import Navbar from '../components/Navbar/Navbar';
 import Page from '../components/Layout/Page';
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <Page>
-      <Navbar onChangeHandler={(e) => handleSearchChange(e)} includeSearch />
+      <Navbar logoComponent={<Logo />} onChangeHandler={(e) => handleSearchChange(e)} includeSearch />
       <Main>
         <Characters searchTerm={debouncedSearchTerm} />
       </Main>

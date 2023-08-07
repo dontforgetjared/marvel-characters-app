@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
-import { BookOpenIcon } from '@heroicons/react/20/solid';
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { useGetCharactersQuery } from '../../services/api';
 import Alert from '../../components/Alert/Alert';
 import CharacterCards from './CharacterCards';
@@ -51,7 +51,7 @@ function Characters({ searchTerm = '' }: ICharactersP) {
         title="No results found for:"
         subtitle={`"${searchTerm}"`}
         content="Please try another search term."
-        icon={<BookOpenIcon className="mx-auto my-0 h-12 w-12 text-red-500" aria-hidden="true" />}
+        icon={<MagnifyingGlassIcon className="mx-auto my-0 h-12 w-12 text-red-500" aria-hidden="true" />}
       />
     );
 

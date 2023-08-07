@@ -22,9 +22,9 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
     <Disclosure as="header" className="bg-white dark:bg-zinc-800 shadow">
       {({ open }) => (
         <>
-          <div className="px-4 lg:px-10">
-            <div className="flex h-16 justify-between">
-              <div className="flex px-2 lg:px-0">
+          <div className="px-4 lg:px-10 py-4 sm:py-0">
+            <div className="flex sm:h-16 justify-between sm:gap-6 flex-col sm:flex-row">
+              <div className="flex px-0">
                 {!!logoComponent && <div className="flex flex-shrink-0 items-center">{logoComponent}</div>}
 
                 {!!navItems && (
@@ -48,8 +48,8 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
               </div>
 
               {includeSearch && (
-                <div className="flex flex-1 items-center justify-center lg:justify-end">
-                  <div className="w-full max-w-lg lg:max-w-sm">
+                <div className="flex flex-1 items-center lg:justify-end">
+                  <div className="w-full lg:max-w-lg">
                     <label htmlFor="search">
                       <span className="sr-only">Search</span>
                       <div className="relative">
@@ -59,7 +59,7 @@ function Navbar({ logoComponent, navItems, onChangeHandler, includeSearch = fals
                         <input
                           id="search"
                           name="search"
-                          className="block w-full rounded-md border-0 bg-white dark:bg-zinc-400 py-1.5 pl-10 pr-3 text-gray-900 dark:text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-800 focus:ring-inset focus:ring-rose-300 dark:focus:bg-white dark:focus:text-gray-900 sm:text-sm sm:leading-6 outline-none"
+                          className="block w-full rounded-md border-0 bg-white dark:bg-zinc-400 py-1.5 pl-10 pr-3 text-gray-900 dark:text-zinc-800 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-800 focus:ring-inset focus:ring-rose-300 dark:focus:bg-white dark:focus:text-gray-900 sm:text-sm sm:leading-6 outline-none"
                           placeholder="Search"
                           type="search"
                           tabIndex={0}
