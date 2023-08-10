@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { CharacterResponse } from './types';
+import { BASE_URL } from './constants';
 
 export const marvelApi = createApi({
   reducerPath: 'marvelApi',
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   tagTypes: ['Characters'],
   endpoints: (builder) => ({
     getCharacters: builder.query<CharacterResponse, { limit: number; offset: number; searchTerm: string }>({

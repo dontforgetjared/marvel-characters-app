@@ -19,3 +19,12 @@ A fun example app using the Marvel Developer API and built with Typescript, Reac
 
 ## Marvel API
 You will need a [Marvel Developer account](https://developer.marvel.com/account) to get an API Key. Learn more about Authentication with the Marvel API [here](https://developer.marvel.com/documentation/authorization).
+
+## Environment Variables (required)
+1. Create an .env file
+2. Add the followoing 
+   ```
+    VITE_API_TS=1
+    VITE_API_KEY=<Your-Marvel-Developer-API-Key>
+    VITE_API_HASH=<Your-Generated-Hash>
+   ```
