@@ -3,6 +3,8 @@
 ## Introduction
 A fun example app using the Marvel Developer API and built with Typescript, React, Redux/RTK, Tailwind CSS, & Vite. 
 
+[View a live demo here](https://dontforgetjared.github.io/marvel-characters-app/).
+
 ## Installation
 
 1. Clone the repository.
