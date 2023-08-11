@@ -32,7 +32,7 @@ function CharacterProfile() {
           <div className="-mt-12 flow-root px-4 sm:-mt-8 sm:flex sm:items-end sm:px-6 lg:-mt-16">
             <div>
               <div className="-m-1 flex">
-                <div className="inline-flex overflow-hidden rounded-lg border-4 border-white dark:border-zinc-300">
+                <div className="inline-flex overflow-hidden rounded-lg border-4 border-white dark:border-zinc-600">
                   {activeCharacter?.thumbnail && (
                     <img
                       className="h-24 w-24 flex-shrink-0 sm:h-40 sm:w-40 lg:h-48 lg:w-48"
