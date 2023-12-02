@@ -74,20 +74,18 @@ describe('Pagination', () => {
 
   it('should fire onPageChange handler on page number button click', async () => {
     const mockHandler = vi.fn();
-    const rendered = render(
-      <Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />
-    );
-    await rendered.container.querySelector<HTMLButtonElement>('nav [type="button"]:nth-child(3)')?.click();
+    render(<Pagination limit={20} totalResults={200} onPageChange={() => mockHandler(1)} currentPageNum={3} />);
+    const buttonEl: HTMLButtonElement = await screen.findByText('3');
+    fireEvent.click(buttonEl);
 
     expect(mockHandler).toBeCalled();
   });
 
   it('should display the number results', async () => {
     const mockHandler = vi.fn();
-    const rendered = render(
-      <Pagination limit={20} totalResults={102} currentPageNum={1} onPageChange={() => mockHandler(6)} offset={100} />
+    render(
+      <Pagination limit={20} totalResults={102} currentPageNum={6} onPageChange={() => mockHandler(6)} offset={100} />
     );
-    await rendered.container.querySelector<HTMLButtonElement>('nav [type="button"]:nth-child(8)')?.click();
 
     expect(screen.getByTestId('showing')).toHaveTextContent('Showing 101 to 102 of 102 results');
   });

@@ -9,6 +9,7 @@
     "lint": "eslint src --ext ts,tsx,css --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",
+    "prettier:fix": "prettier --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
@@ -73,7 +74,7 @@
   },
   "lint-staged": {
     "*.{js,css,ts,tsx,jsx}": [
-      "prettier --write",
+      "yarn prettier:fix",
       "eslint --fix"
     ]
   }
